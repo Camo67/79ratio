@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { 
   Cloud, 
   Server, 
@@ -18,7 +20,8 @@ import {
   Users,
   BarChart3
 } from 'lucide-react';
-const cloudSolutionsBg = 'https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbG91ZCUyMGNvbXB1dGluZyUyMHNlcnZlcnMlMjB0ZWNobm9sb2d5JTIwaW5mcmFzdHJ1Y3R1cmV8ZW58MXx8fHwxNzU2MzU4NjM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+const baseCloud = import.meta.env.BASE_URL || '/';
+const cloudSolutionsBg = encodeURI(`${baseCloud}cloud c_computing.jpg`);
 
 const services = [
   {
@@ -150,6 +153,7 @@ const cloudBenefits = [
 export default function CloudSolutionsPage() {
   return (
     <div className="min-h-screen bg-background-light">
+      <Header />
       {/* Hero Section */}
       <section 
         className="relative text-white py-[var(--space-128)] px-[var(--space-24)]"
@@ -408,6 +412,7 @@ export default function CloudSolutionsPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

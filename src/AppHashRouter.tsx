@@ -1,4 +1,5 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import SolutionsPage from './pages/SolutionsPage'
 import DigitalSystemsPage from './pages/DigitalSystemsPage'
@@ -6,10 +7,12 @@ import DesignAccessibilityPage from './pages/DesignAccessibilityPage'
 import CompliancePage from './pages/CompliancePage'
 import CybersecurityPage from './pages/CybersecurityPage'
 import CloudSolutionsPage from './pages/CloudSolutionsPage'
+import IndustriesPage from './pages/IndustriesPage'
 
 export default function AppHashRouter() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/solutions" element={<SolutionsPage />} />
@@ -19,6 +22,7 @@ export default function AppHashRouter() {
         <Route path="/solutions/cybersecurity" element={<CybersecurityPage />} />
         <Route path="/solutions/cloud" element={<CloudSolutionsPage />} />
         <Route path="/managed-services" element={<CloudSolutionsPage />} />
+        <Route path="/industries" element={<IndustriesPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>

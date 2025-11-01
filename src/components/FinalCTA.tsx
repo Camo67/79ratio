@@ -2,11 +2,18 @@ import { Button } from './ui/button'
 import { Card } from './ui/card'
 
 const FinalCTA = () => {
+  const base = import.meta.env.BASE_URL || '/'
+  const ctaBg = encodeURI(`${base}cloud c_computing.jpg`)
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-900 to-black">
+    <section className="py-24 bg-black">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Card className="bg-gray-900/80 border-yellow-400/30 p-16 text-center glow-gold-intense">
-          <div className="max-w-4xl mx-auto">
+        <Card className="relative overflow-hidden bg-black border-yellow-400/30 p-16 text-center glow-gold-intense">
+          <div
+            className="absolute inset-0 bg-cover bg-center z-0"
+            style={{ backgroundImage: `url("${ctaBg}")` }}
+          />
+          <div className="absolute inset-0 bg-black/60 z-0" />
+          <div className="relative z-10 max-w-4xl mx-auto">
             <h2 className="mb-6 text-white">
               IT That Disappears Into Your Workflow
             </h2>

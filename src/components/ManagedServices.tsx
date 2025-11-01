@@ -116,32 +116,32 @@ const ManagedServices = () => {
 
   const additionalServices = [
     {
-      icon: <Monitor className="w-6 h-6 text-blue-400" />,
+      icon: <Monitor className="w-6 h-6 text-yellow-400" />,
       title: "24/7 System Monitoring",
       description: "Continuous monitoring of your IT infrastructure with proactive issue resolution."
     },
     {
-      icon: <Headphones className="w-6 h-6 text-blue-400" />,
+      icon: <Headphones className="w-6 h-6 text-yellow-400" />,
       title: "Help Desk Support", 
       description: "Comprehensive technical support for all your IT needs with multiple support tiers."
     },
     {
-      icon: <Shield className="w-6 h-6 text-blue-400" />,
+      icon: <Shield className="w-6 h-6 text-yellow-400" />,
       title: "Security Management",
       description: "Ongoing security monitoring, threat detection, and incident response services."
     },
     {
-      icon: <Cloud className="w-6 h-6 text-blue-400" />,
+      icon: <Cloud className="w-6 h-6 text-yellow-400" />,
       title: "Cloud Services Management",
       description: "Complete management of your cloud infrastructure and applications."
     },
     {
-      icon: <Database className="w-6 h-6 text-blue-400" />,
+      icon: <Database className="w-6 h-6 text-yellow-400" />,
       title: "Data Backup & Recovery",
       description: "Automated backup solutions with rapid recovery capabilities."
     },
     {
-      icon: <Settings className="w-6 h-6 text-blue-400" />,
+      icon: <Settings className="w-6 h-6 text-yellow-400" />,
       title: "Infrastructure Maintenance",
       description: "Regular maintenance and updates to keep your systems running optimally."
     }
@@ -198,7 +198,7 @@ const ManagedServices = () => {
       {/* Hero Section */}
       <section className="bg-black text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-yellow-900/10" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -257,13 +257,13 @@ const ManagedServices = () => {
                     onClick={() => setActiveService(service.id)}
                     className={`w-full text-left p-4 rounded-lg transition-all duration-300 ${
                       activeService === service.id
-                        ? 'bg-blue-50 border-l-4 border-blue-400 shadow-md'
+                        ? 'bg-yellow-50 border-l-4 border-yellow-400 shadow-md'
                         : 'hover:bg-gray-50 border-l-4 border-transparent'
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg ${
-                        activeService === service.id ? 'bg-blue-100' : 'bg-gray-100'
+                        activeService === service.id ? 'bg-yellow-100' : 'bg-gray-100'
                       }`}>
                         {service.icon}
                       </div>
@@ -298,7 +298,7 @@ const ManagedServices = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <Settings className="w-5 h-5 text-blue-400" />
+                        <Settings className="w-5 h-5 text-yellow-400" />
                         Key Features
                       </h4>
                       <ul className="space-y-3">
@@ -319,7 +319,7 @@ const ManagedServices = () => {
                       <ul className="space-y-3">
                         {selectedService.benefits.map((benefit, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <ArrowRight className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                            <ArrowRight className="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0" />
                             <span className="text-gray-700">{benefit}</span>
                           </li>
                         ))}
@@ -329,7 +329,7 @@ const ManagedServices = () => {
 
                   <div className="mt-8 pt-6 border-t border-gray-200">
                     <Button 
-                      className="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3"
+                      className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3"
                     >
                       Learn More About {selectedService.title}
                       <ArrowRight className="w-4 h-4 ml-2" />
@@ -358,7 +358,7 @@ const ManagedServices = () => {
             {additionalServices.map((service, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-blue-50 rounded-lg">
+                  <div className="p-3 bg-yellow-50 rounded-lg">
                     {service.icon}
                   </div>
                   <div>
@@ -405,7 +405,7 @@ const ManagedServices = () => {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
                   <p className="text-gray-600 mb-4">{pkg.description}</p>
-                  <div className="text-3xl font-bold text-blue-400">{pkg.price}</div>
+                  <div className="text-3xl font-bold text-yellow-400">{pkg.price}</div>
                 </div>
 
                 <ul className="space-y-3 mb-8">
@@ -421,7 +421,7 @@ const ManagedServices = () => {
                   className={`w-full ${
                     pkg.popular 
                       ? 'bg-yellow-400 text-black hover:bg-yellow-300' 
-                      : 'bg-blue-400 text-white hover:bg-blue-500'
+                      : 'bg-yellow-400 text-black hover:bg-yellow-500'
                   }`}
                 >
                   Get Started

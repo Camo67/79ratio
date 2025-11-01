@@ -37,7 +37,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-6">
-              <Logo size="md" variant="light" />
+              <Logo size="sm" variant="light" />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Technology that moves with you. Seamlessly integrating advanced technology 
@@ -57,7 +57,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Solutions</h3>
+            <h3 className="text-white font-semibold mb-4 text-base">Solutions</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link}>
@@ -71,7 +71,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <h3 className="text-white font-semibold mb-4 text-base">Services</h3>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
@@ -85,7 +85,7 @@ const Footer = () => {
 
           {/* Sectors */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Sectors</h3>
+            <h3 className="text-white font-semibold mb-4 text-base">Sectors</h3>
             <ul className="space-y-2">
               {sectors.map((sector) => (
                 <li key={sector}>
@@ -99,7 +99,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <h3 className="text-white font-semibold mb-4 text-base">Company</h3>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link}>

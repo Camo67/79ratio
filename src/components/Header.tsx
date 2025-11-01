@@ -127,7 +127,7 @@ export default function Header() {
         {/* Left side: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/" className="flex-shrink-0">
-            <Logo size="md" variant="light" className="glow-blue-subtle" />
+            <Logo size="sm" variant="light" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -143,6 +143,12 @@ export default function Header() {
               className="text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)] flex items-center"
             >
               Solutions
+            </Link>
+            <Link 
+              to="/industries" 
+              className="text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)] flex items-center"
+            >
+              Industries
             </Link>
             <div 
               className="relative"
@@ -234,7 +240,7 @@ export default function Header() {
         <div className="lg:hidden bg-gray-900 fixed inset-0 z-50 p-6 overflow-y-auto">
             <div className="flex justify-between items-center mb-8">
               <Link to="/">
-                <Logo size="md" variant="light" />
+                <Logo size="sm" variant="light" />
               </Link>
               <button onClick={() => setIsMenuOpen(false)}>
                 <X className="w-8 h-8" />
@@ -254,6 +260,13 @@ export default function Header() {
                   className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors"
                 >
                   Solutions
+                </Link>
+                <Link 
+                  to="/industries" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors"
+                >
+                  Industries
                 </Link>
                 <h3 className="text-yellow-400 font-bold text-xl pt-4">What We Do</h3>
                 {Object.values(megaMenuData).flat().map(link => (

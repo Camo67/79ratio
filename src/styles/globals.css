@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Quicksand:wght@400;500;700&family=Fira+Sans:wght@400;500;700&family=Dancing+Script:wght@400;500;700&family=Pacifico&family=Great+Vibes&display=swap');
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,16 +11,16 @@
   --font-sans: 'Roboto', 'Ubuntu', 'DM Sans', 'Quicksand', 'Fira Sans', system-ui, -apple-system, sans-serif;
   --font-script: 'Dancing Script', 'Pacifico', 'Great Vibes', cursive;
   
-  /* 79Ratio Design System Colors - Updated to Black and Dark Blue */
-  --primary-blue: #9FB3DF;
-  --secondary-blue: #9EC6F3;
-  --light-blue: #BDDDE4;
-  --dark-blue: #2D3748;
+  /* 79Ratio Design System Colors - Black + Gold */
+  --primary-blue: #FACC15; /* gold */
+  --secondary-blue: #EAB308; /* amber */
+  --light-blue: #FDE68A; /* light gold */
+  --dark-blue: #1A202C; /* dark backdrop */
   
   --background-light: #000000;
-  --background-secondary: #1A202C;
-  --accent-primary: #9FB3DF;
-  --accent-secondary: #9EC6F3;
+  --background-secondary: #000000;
+  --accent-primary: #FACC15;
+  --accent-secondary: #EAB308;
   --text-primary: #FFFFFF;
   --text-secondary: #E2E8F0;
   --text-muted: #A0AEC0;
@@ -26,28 +28,28 @@
   /* Original theme variables for components - Updated to Dark Theme */
   --background: #000000;
   --foreground: #FFFFFF;
-  --card: #1A202C;
+  --card: #000000;
   --card-foreground: #FFFFFF;
-  --popover: #1A202C;
+  --popover: #000000;
   --popover-foreground: #FFFFFF;
-  --primary: #9FB3DF;
+  --primary: #FACC15;
   --primary-foreground: #000000;
-  --secondary: #9EC6F3;
+  --secondary: #EAB308;
   --secondary-foreground: #000000;
   --muted: #2D3748;
   --muted-foreground: #A0AEC0;
-  --accent: #9FB3DF;
+  --accent: #FACC15;
   --accent-foreground: #000000;
   --destructive: #E53E3E;
   --destructive-foreground: #ffffff;
-  --border: rgba(159, 179, 223, 0.2);
+  --border: rgba(250, 204, 21, 0.2);
   --input: transparent;
   --input-background: rgba(45, 55, 72, 0.8);
   --switch-background: #2D3748;
   --font-weight-medium: 600;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
-  --ring: #9FB3DF;
+  --ring: #FACC15;
   
   /* 79Ratio Typography Scale - Increased sizes */
   --text-h1: 5rem; /* 80px - increased from 64px */
@@ -82,6 +84,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-light: var(--background-light);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -109,16 +112,35 @@
 }
 
 @layer base {
+  /* Global reset + base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    border-style: solid;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
 
+  html, body, #root {
+    background-color: var(--background-light);
+  }
+
   body {
     @apply bg-background text-foreground;
-    background-color: var(--background-light);
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: var(--font-size);
+  }
+
+  /* Ensure images don't overflow and scale within containers by default */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -266,10 +288,10 @@ html {
 
 @keyframes glow-pulse {
   0%, 100% { 
-    box-shadow: 0 0 20px rgba(159, 179, 223, 0.4);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.35);
   }
   50% { 
-    box-shadow: 0 0 30px rgba(159, 179, 223, 0.6), 0 0 40px rgba(159, 179, 223, 0.4);
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.55), 0 0 40px rgba(250, 204, 21, 0.35);
   }
 }
 
@@ -438,9 +460,9 @@ html {
 
 .glow-blue-button:hover {
   box-shadow: 
-    0 0 30px rgba(159, 179, 223, 0.8),
-    0 0 60px rgba(159, 179, 223, 0.4),
-    inset 0 0 20px rgba(159, 179, 223, 0.1);
+    0 0 30px rgba(250, 204, 21, 0.8),
+    0 0 60px rgba(250, 204, 21, 0.35),
+    inset 0 0 20px rgba(250, 204, 21, 0.1);
   transform: translateY(-2px);
 }
 
@@ -449,8 +471,8 @@ html {
 }
 
 .glow-blue-subtle:hover {
-  box-shadow: 0 0 15px rgba(159, 179, 223, 0.3);
-  text-shadow: 0 0 8px rgba(159, 179, 223, 0.2);
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+  text-shadow: 0 0 8px rgba(250, 204, 21, 0.2);
 }
 
 /* Legacy gold classes maintained for compatibility */
@@ -461,10 +483,10 @@ html {
 
 .glow-gold:hover {
   box-shadow: 
-    0 0 23px rgba(159, 179, 223, 0.4),
-    0 0 46px rgba(159, 179, 223, 0.2),
-    0 0 69px rgba(159, 179, 223, 0.1);
-  text-shadow: 0 0 12px rgba(159, 179, 223, 0.3);
+    0 0 23px rgba(250, 204, 21, 0.35),
+    0 0 46px rgba(250, 204, 21, 0.2),
+    0 0 69px rgba(250, 204, 21, 0.1);
+  text-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
 }
 
 .glow-gold-intense {
@@ -474,10 +496,10 @@ html {
 
 .glow-gold-intense:hover {
   box-shadow: 
-    0 0 25px rgba(159, 179, 223, 0.6),
-    0 0 50px rgba(159, 179, 223, 0.4),
-    0 0 75px rgba(159, 179, 223, 0.2);
-  text-shadow: 0 0 15px rgba(159, 179, 223, 0.5);
+    0 0 25px rgba(250, 204, 21, 0.55),
+    0 0 50px rgba(250, 204, 21, 0.35),
+    0 0 75px rgba(250, 204, 21, 0.2);
+  text-shadow: 0 0 15px rgba(250, 204, 21, 0.45);
   transform: translateY(-1px);
 }
 
@@ -489,9 +511,9 @@ html {
 
 .glow-gold-button:hover {
   box-shadow: 
-    0 0 30px rgba(159, 179, 223, 0.8),
-    0 0 60px rgba(159, 179, 223, 0.4),
-    inset 0 0 20px rgba(159, 179, 223, 0.1);
+    0 0 30px rgba(250, 204, 21, 0.8),
+    0 0 60px rgba(250, 204, 21, 0.35),
+    inset 0 0 20px rgba(250, 204, 21, 0.1);
   transform: translateY(-2px);
 }
 
@@ -500,8 +522,8 @@ html {
 }
 
 .glow-gold-subtle:hover {
-  box-shadow: 0 0 15px rgba(159, 179, 223, 0.3);
-  text-shadow: 0 0 8px rgba(159, 179, 223, 0.2);
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+  text-shadow: 0 0 8px rgba(250, 204, 21, 0.2);
 }
 
 /* Mega Menu Animations */
@@ -549,7 +571,7 @@ html {
 *:focus-visible {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(159, 179, 223, 0.2);
+  box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.2);
 }
 
 /* Ensure minimum touch targets */
@@ -559,4 +581,11 @@ html {
     min-height: 44px;
     min-width: 44px;
   }
+}
+
+/* Utilities overrides: ensure gray-900 variants render as black */
+@layer utilities {
+  .bg-gray-900 { background-color: #000 !important; }
+  .bg-gray-900\/80 { background-color: rgb(0 0 0 / 0.8) !important; }
+  .bg-gray-900\/50 { background-color: rgb(0 0 0 / 0.5) !important; }
 }

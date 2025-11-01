@@ -4,6 +4,8 @@
   import path from 'path';
 
   export default defineConfig({
+    // Ensure correct asset paths when deployed under /website/ (GitHub Pages)
+    base: '/website/',
     plugins: [react()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

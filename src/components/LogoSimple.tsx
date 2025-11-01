@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from 'figma:asset/349f9df2ad456d12eda6c6daef43893bff1b1253.png';
+import logoImage from '@/assets/79ratio-logo-new.webp';
 
 interface LogoSimpleProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
@@ -58,10 +58,12 @@ const LogoSimple: React.FC<LogoSimpleProps> = ({
         />
       </div>
       
-      {showText && (
+      {showText ? (
         <span className={`font-bold font-sans ${config.textSize} ${textColor} leading-none`}>
-          Technology
+          79Ratio
         </span>
+      ) : (
+        <span className="sr-only">79Ratio Technology Solutions</span>
       )}
     </div>
   );

@@ -61,7 +61,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              className="bg-[#1A202C] rounded-xl p-8 border border-gray-800 hover:border-[#9FB3DF] transition-all duration-300 relative overflow-hidden group"
+              className="bg-[#1A202C] rounded-xl p-8 border border-gray-800 hover:border-yellow-400 transition-all duration-300 relative overflow-hidden group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -70,7 +70,7 @@ export default function Testimonials() {
             >
               {/* Quote Icon */}
               <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="w-16 h-16 text-[#9FB3DF]" />
+                <Quote className="w-16 h-16 text-yellow-400" />
               </div>
 
               {/* Rating */}
@@ -88,7 +88,7 @@ export default function Testimonials() {
               {/* Client Info */}
               <div className="flex items-center">
                 {/* Avatar */}
-                <div className="w-12 h-12 bg-gradient-to-br from-[#9FB3DF] to-[#9EC6F3] rounded-full flex items-center justify-center mr-4 font-bold text-black">
+                <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mr-4 font-bold text-black">
                   {testimonial.avatar}
                 </div>
 
@@ -97,7 +97,7 @@ export default function Testimonials() {
                   <div className="font-medium text-white font-sans">
                     {testimonial.name}
                   </div>
-                  <div className="text-[#9FB3DF] text-sm font-sans">
+                  <div className="text-yellow-400 text-sm font-sans">
                     {testimonial.title}
                   </div>
                   <div className="text-[#A0AEC0] text-sm font-sans">
@@ -118,17 +118,17 @@ export default function Testimonials() {
           viewport={{ once: true }}
         >
           <div className="bg-[#1A202C] rounded-xl p-6 border border-gray-800">
-            <div className="text-3xl font-bold text-[#9FB3DF] mb-2 font-sans">98%</div>
+            <div className="text-3xl font-bold text-yellow-400 mb-2 font-sans">98%</div>
             <div className="text-[#A0AEC0] font-sans">Client Satisfaction Rate</div>
           </div>
           
           <div className="bg-[#1A202C] rounded-xl p-6 border border-gray-800">
-            <div className="text-3xl font-bold text-[#9FB3DF] mb-2 font-sans">4.9</div>
+            <div className="text-3xl font-bold text-yellow-400 mb-2 font-sans">4.9</div>
             <div className="text-[#A0AEC0] font-sans">Average Rating</div>
           </div>
           
           <div className="bg-[#1A202C] rounded-xl p-6 border border-gray-800">
-            <div className="text-3xl font-bold text-[#9FB3DF] mb-2 font-sans">250+</div>
+            <div className="text-3xl font-bold text-yellow-400 mb-2 font-sans">250+</div>
             <div className="text-[#A0AEC0] font-sans">Happy Clients</div>
           </div>
         </motion.div>
@@ -157,7 +157,7 @@ export default function Testimonials() {
                 });
               }
             }}
-            className="bg-gradient-to-r from-[#9FB3DF] to-[#9EC6F3] text-black font-bold py-3 px-8 rounded-lg hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             Start Your Success Story
           </button>

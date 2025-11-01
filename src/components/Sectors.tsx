@@ -8,7 +8,7 @@ const sectors = [
     icon: Heart,
     title: 'Healthcare',
     description: 'HIPAA-compliant IT solutions, electronic health records, and telemedicine infrastructure.',
-    image: 'https://images.unsplash.com/photo-1631563020941-c0c6bc534b8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwdGVjaG5vbG9neSUyMG1lZGljYWwlMjBjb21wdXRlcnxlbnwxfHx8fDE3NTYzNjA0MDB8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/public/medical.jpg',
     features: ['HIPAA Compliance', 'EHR Systems', 'Telemedicine', 'Data Security']
   },
   {
@@ -45,9 +45,7 @@ export default function Sectors() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="mb-6 text-white font-sans">
-            Industry Expertise
-          </h2>
+          <h2 className="mb-6 text-white font-sans">Industries We Serve</h2>
           <p className="max-w-3xl mx-auto text-[#A0AEC0] font-sans">
             We understand the unique challenges and requirements of different industries, 
             delivering specialized IT solutions that meet sector-specific compliance and operational needs.
@@ -65,7 +63,7 @@ export default function Sectors() {
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
             >
-              <div className="bg-[#1A202C] rounded-xl overflow-hidden border border-gray-800 hover:border-[#9FB3DF] transition-all duration-300">
+              <div className="bg-[#1A202C] rounded-xl overflow-hidden border border-gray-800 hover:border-yellow-400 transition-all duration-300">
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
                   <ImageWithFallback
@@ -77,7 +75,7 @@ export default function Sectors() {
                   
                   {/* Icon Overlay */}
                   <div className="absolute top-4 right-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#9FB3DF] to-[#9EC6F3] rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-lg flex items-center justify-center">
                       <sector.icon className="w-6 h-6 text-black" />
                     </div>
                   </div>
@@ -85,7 +83,7 @@ export default function Sectors() {
 
                 {/* Content */}
                 <div className="p-8">
-                  <h3 className="mb-4 text-white font-sans font-medium group-hover:text-[#9FB3DF] transition-colors">
+                  <h3 className="mb-4 text-white font-sans font-medium group-hover:text-yellow-400 transition-colors">
                     {sector.title}
                   </h3>
                   
@@ -97,7 +95,7 @@ export default function Sectors() {
                   <div className="grid grid-cols-2 gap-2">
                     {sector.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center text-sm text-[#A0AEC0] font-sans">
-                        <div className="w-2 h-2 bg-[#9FB3DF] rounded-full mr-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2 flex-shrink-0"></div>
                         {feature}
                       </div>
                     ))}
@@ -122,13 +120,13 @@ export default function Sectors() {
             </h3>
             <div className="flex flex-wrap justify-center gap-4 text-[#A0AEC0] font-sans">
               <span>Legal Services</span>
-              <span className="text-[#9FB3DF]">•</span>
+              <span className="text-yellow-400">•</span>
               <span>Retail & E-commerce</span>
-              <span className="text-[#9FB3DF]">•</span>
+              <span className="text-yellow-400">•</span>
               <span>Real Estate</span>
-              <span className="text-[#9FB3DF]">•</span>
+              <span className="text-yellow-400">•</span>
               <span>Non-Profit</span>
-              <span className="text-[#9FB3DF]">•</span>
+              <span className="text-yellow-400">•</span>
               <span>Professional Services</span>
             </div>
             <p className="mt-4 text-[#A0AEC0] font-sans">

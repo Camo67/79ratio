@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { 
   Palette, 
   Eye, 
@@ -16,7 +18,8 @@ import {
   TrendingUp,
   Target
 } from 'lucide-react';
-const designAccessibilityBg = 'https://images.unsplash.com/photo-1600202751116-3e0226e1e7a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkZXNpZ24lMjBhY2Nlc3NpYmlsaXR5JTIwd2Vic2l0ZSUyMHVpJTIwdXh8ZW58MXx8fHwxNzU2MzU4NjE2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+const baseDesign = import.meta.env.BASE_URL || '/';
+const designAccessibilityBg = encodeURI(`${baseDesign}Image_fx (27).jpg`);
 
 
 const services = [
@@ -124,33 +127,34 @@ const designProcess = [
 export default function DesignAccessibilityPage() {
   return (
     <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
       <section 
         className="relative text-white py-[var(--space-128)] px-[var(--space-24)]"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${designAccessibilityBg})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${designAccessibilityBg}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="container mx-auto">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-[var(--space-24)] bg-white/20 text-white border-white/30 font-sans">
               Design & Accessibility Solutions
             </Badge>
             <h1 className="mb-[var(--space-24)] text-white font-sans">
               Inclusive Design That Reaches Everyone
             </h1>
-            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
+            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl mx-auto font-sans">
               Expert "Design & Accessibility" services encompassing UX/UI Design, User Experience Optimization, Branding & Visual Identity, and Accessibility Audits.
 
             </p>
-            <div className="flex flex-col sm:flex-row gap-[var(--space-16)]">
+            <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
               <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                 Get Design Consultation
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-secondary-blue font-sans">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black font-sans">
                 Accessibility Audit
               </Button>
             </div>
@@ -338,6 +342,7 @@ export default function DesignAccessibilityPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

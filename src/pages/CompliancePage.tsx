@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { 
   CheckCircle, 
   BarChart3, 
@@ -16,7 +18,8 @@ import {
   Award,
   Users
 } from 'lucide-react';
-const complianceBg = 'https://images.unsplash.com/photo-1686061593213-98dad7c599b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGNvbXBsaWFuY2UlMjBhbmFseXRpY3MlMjB3b3JrZmxvdyUyMG9wdGltaXphdGlvbnxlbnwxfHx8fDE3NTYzNTg2Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+const baseCompliance = import.meta.env.BASE_URL || '/';
+const complianceBg = encodeURI(`${baseCompliance}Image_fx (23).jpg`);
 
 const services = [
   {
@@ -136,28 +139,29 @@ const benefits = [
 export default function CompliancePage() {
   return (
     <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
       <section 
         className="relative text-white py-[var(--space-128)] px-[var(--space-24)]"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${complianceBg})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${complianceBg}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="container mx-auto">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-[var(--space-24)] bg-white/20 text-white border-white/30 font-sans">
               Compliance & Optimization Solutions
             </Badge>
             <h1 className="mb-[var(--space-24)] text-white font-sans">
               Streamline Operations & Ensure Compliance
             </h1>
-            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
+            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl mx-auto font-sans">
               Transform your business with intelligent automation and comprehensive compliance solutions. Our optimization services help you work smarter, reduce risks, and achieve sustainable growth.
             </p>
-            <div className="flex flex-col sm:flex-row gap-[var(--space-16)]">
+            <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
               <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                 Start Process Assessment
               </Button>
@@ -365,6 +369,7 @@ export default function CompliancePage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

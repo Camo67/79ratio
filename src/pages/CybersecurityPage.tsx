@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { 
   Shield, 
   Lock, 
@@ -15,7 +17,8 @@ import {
   Users,
   Target
 } from 'lucide-react';
-const cybersecurityBg = 'https://images.unsplash.com/photo-1639503547276-90230c4a4198?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjeWJlcnNlY3VyaXR5JTIwc2hpZWxkJTIwcHJvdGVjdGlvbiUyMG5ldHdvcmslMjBzZWN1cml0eXxlbnwxfHx8fDE3NTYzNTg2NTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
+const baseCyber = import.meta.env.BASE_URL || '/';
+const cybersecurityBg = encodeURI(`${baseCyber}it-helpdesk-services-24-7.jpg`);
 
 const services = [
   {
@@ -149,6 +152,7 @@ const securityStats = [
 export default function CybersecurityPage() {
   return (
     <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
       <section 
         className="relative text-white py-[var(--space-128)] px-[var(--space-24)]"
@@ -160,7 +164,7 @@ export default function CybersecurityPage() {
         }}
       >
         <div className="container mx-auto">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-[var(--space-24)] bg-white/20 text-white border-white/30 font-sans">
               Cybersecurity Solutions
             </Badge>
@@ -170,7 +174,7 @@ export default function CybersecurityPage() {
             <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
               Comprehensive cybersecurity solutions designed to protect your business from evolving threats. Our advanced security measures ensure your data, systems, and operations remain secure.
             </p>
-            <div className="flex flex-col sm:flex-row gap-[var(--space-16)]">
+            <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
               <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                 Get Security Assessment
               </Button>
@@ -401,6 +405,7 @@ export default function CybersecurityPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
