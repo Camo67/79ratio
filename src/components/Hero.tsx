@@ -1,124 +1,101 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { ChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 
-export default function Hero() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
+const Hero = () => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  
   const base = import.meta.env.BASE_URL || '/';
-  const desktop = encodeURI(`${base}nodes.jpg`);
-  const mobile = encodeURI(`${base}technology-consulting-partners.png`);
+  const heroBg = `${base}technology-consulting-partners.png`;
+
+  useEffect(() => {
+    // Preload the hero image
+    const img = new Image();
+    img.src = heroBg;
+    
+    img.onload = () => {
+      setIsImageLoaded(true);
+      setIsImageLoading(false);
+    };
+    
+    img.onerror = () => {
+      setIsImageLoading(false);
+    };
+  }, [heroBg]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Simple background image only (no patterns/effects) */}
-      <div className="absolute inset-0">
-        <picture>
-          <source media="(min-width: 1024px)" srcSet={desktop} />
-          <img
-            src={mobile}
-            alt="Technology Consulting Partners - 79Ratio"
-            title="Technology Consulting Partners - 79Ratio"
-            className="w-full h-full object-cover"
-          />
-        </picture>
-      </div>
-
-      {/* Optional dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/30" />
-
-      <div className="container mx-auto px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <div className="max-w-3xl mx-auto bg-black/60 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-white/10 shadow-lg shadow-black/30">
-            {/* Main Headline */}
-            <h1 className="mb-4 font-sans leading-tight text-white">
-              <span className="block">Transform Your Business with Cutting-Edge Technology</span>
-            </h1>
-
-            {/* Subheading */}
-            <motion.p 
-              className="mb-6 text-white font-sans leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-            >
-              79Ratio provides end-to-end technology solutions that fuel growth, strengthen security, and optimize operations. From cybersecurity to cloud transformation, we’re your trusted partner in digital innovation.
-            </motion.p>
-
-            {/* Stats Row */}
-            <motion.div 
-              className="flex flex-wrap justify-center gap-8 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white font-sans">500+</div>
-                <div className="text-sm text-white/80 font-sans">Projects Delivered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white font-sans">24/7</div>
-                <div className="text-sm text-white/80 font-sans">Support Available</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white font-sans">99.9%</div>
-                <div className="text-sm text-white/80 font-sans">Uptime Guarantee</div>
-              </div>
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            >
-              <button
-                onClick={() => scrollToSection('final-cta')}
-                className="group bg-yellow-400 text-black font-bold py-4 px-8 rounded-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg"
-              >
-                Start Your Transformation
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button
-                onClick={() => scrollToSection('services')}
-                className="bg-yellow-400 text-black font-bold py-4 px-8 rounded-lg hover:bg-yellow-500 transition-all duration-300 shadow-lg"
-              >
-                Explore Our Services
-              </button>
-            </motion.div>
+    <section 
+      className="relative text-white py-20 md:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      aria-label="Hero section"
+    >
+      {/* Background with loading state */}
+      <div 
+        className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+          isImageLoaded ? 'opacity-100' : 'opacity-30'
+        }`}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${heroBg}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      
+      {/* Fallback background while image is loading */}
+      {!isImageLoaded && (
+        <div className="absolute inset-0 to-black" />
+      )}
+      
+      <div className="relative max-w-7xl mx-auto">
+        <div className="text-center max-w-4xl mx-auto">
+          <div className="inline-block mb-6">
+            <span className="bg-yellow-400/10 text-yellow-400 border border-yellow-400/20 rounded-full px-4 py-1.5 text-sm font-medium">
+              RATIO 79
+            </span>
           </div>
-
-          {/* Trust Indicator */}
-          <motion.p 
-            className="mt-6 text-sm text-white/80 font-sans"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            Trusted by businesses nationwide • An IPR Tech Group Company
-          </motion.p>
-        </motion.div>
-
-        {/* Scroll Indicator removed per request */}
+          
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <span className="block">Transform Your Business with</span>
+            <span className="block text-yellow-400 mt-2">Cutting-Edge Technology</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl mb-10 text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Comprehensive IT solutions for modern businesses. From cybersecurity to cloud infrastructure, 
+            we help you stay ahead in the digital landscape.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+            <Link 
+              to="/solutions" 
+              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-500 md:py-4 md:text-lg md:px-10 transition duration-300 shadow-lg"
+            >
+              Explore Solutions
+            </Link>
+            
+            <Link 
+              to="/#contact" 
+              className="inline-flex items-center justify-center px-8 py-4 border border-yellow-400 text-base font-medium rounded-md text-yellow-400 bg-transparent hover:bg-yellow-400/10 md:py-4 md:text-lg md:px-10 transition duration-300"
+            >
+              Book a Consultation
+            </Link>
+          </div>
+        </div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a 
+          href="#services" 
+          className="flex flex-col items-center text-white hover:text-yellow-400 transition-colors duration-300"
+          aria-label="Scroll to services section"
+        >
+          <span className="text-sm mb-2">Explore</span>
+          <ChevronDown className="h-6 w-6" />
+        </a>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

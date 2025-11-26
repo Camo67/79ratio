@@ -23,6 +23,8 @@ import {
 const baseCloud = import.meta.env.BASE_URL || '/';
 const cloudSolutionsBg = encodeURI(`${baseCloud}cloud c_computing.jpg`);
 
+// Deep-dive sections moved to /solutions/cloud-infrastructure
+
 const services = [
   {
     title: "Cloud Migration",
@@ -150,6 +152,42 @@ const cloudBenefits = [
   }
 ];
 
+const whyChooseCloud = [
+  {
+    title: "Scalable & Secure Cloud Platforms",
+    description: "We deploy your infrastructure on AWS, Microsoft Azure, and Google Cloud, with hybrid and multi-cloud options to suit your needs. Our solutions include auto-scaling capabilities, ensuring your systems can handle traffic spikes without downtime.",
+    icon: <Cloud className="w-6 h-6" />,
+  },
+  {
+    title: "Cost-Efficient and Future-Ready",
+    description: "We help you reduce infrastructure costs by up to 50% through optimized resource allocation, automated scaling, and cloud-native architecture. Our infrastructure is built to be future-proof, allowing your business to grow without the burden of outdated systems.",
+    icon: <TrendingUp className="w-6 h-6" />,
+  },
+  {
+    title: "High Availability and Uptime",
+    description: "With 99.9% uptime guarantees, our cloud infrastructure ensures your applications and data are always available — no matter where your users are. We implement redundancy, load balancing, and failover systems to maintain continuous performance.",
+    icon: <Globe className="w-6 h-6" />,
+  },
+  {
+    title: "Expert Support & Management",
+    description: "Our team of cloud engineers and architects provides 24/7 monitoring, maintenance, and optimization. We help you deploy, manage, and scale your cloud environment — so you can focus on what matters most: your business.",
+    icon: <Users className="w-6 h-6" />,
+  },
+];
+
+const cloudProcess = [
+  { step: '1', title: 'Assessment', description: 'We analyze your current infrastructure and business goals to determine the best cloud strategy.' },
+  { step: '2', title: 'Design & Deployment', description: 'We design and deploy your cloud environment using best practices and the latest technologies.' },
+  { step: '3', title: 'Optimization', description: 'We continuously optimize your cloud usage to reduce costs and improve performance.' },
+  { step: '4', title: 'Monitoring & Support', description: 'We monitor your environment 24/7 and provide ongoing support to ensure stability and reliability.' },
+];
+
+const cloudResults = [
+  { value: '60%', label: 'Cost Reduction', sub: 'in infrastructure costs for a Fortune 500 company' },
+  { value: '99.9%', label: 'Uptime', sub: 'achieved in just six months after migration' },
+  { value: '100%', label: 'Compliance', sub: 'with industry standards and regulations' },
+];
+
 export default function CloudSolutionsPage() {
   return (
     <div className="min-h-screen bg-background-light">
@@ -158,24 +196,30 @@ export default function CloudSolutionsPage() {
       <section 
         className="relative text-white py-[var(--space-128)] px-[var(--space-24)]"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${cloudSolutionsBg})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(\"${cloudSolutionsBg}\")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="container mx-auto">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-[var(--space-24)] bg-white/20 text-white border-white/30 font-sans">
-              Cloud Solutions
+              Cloud Infrastructure
             </Badge>
             <h1 className="mb-[var(--space-24)] text-white font-sans">
-              Scale Your Business with Cloud Solutions
+              Cloud Infrastructure That Grows With You
             </h1>
-            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
-              Transform your business with scalable, secure, and cost-effective cloud solutions. Our comprehensive cloud services help you leverage the power of modern cloud platforms to drive innovation and growth.
+            <p className="text-[var(--text-body-large)] mb-[var(--space-16)] opacity-90 max-w-3xl mx-auto font-sans">
+              Scalable, secure, and future-ready cloud solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-[var(--space-16)]">
+            <p className="text-gray-300 mb-[var(--space-16)] font-sans">
+              At 79Ratio, we help businesses of all sizes harness the power of the cloud — with secure infrastructure, instant scalability, and cost efficiency. Whether you're just starting out or managing a growing enterprise, our cloud solutions are designed to scale with your needs, reduce costs, and keep your operations running smoothly.
+            </p>
+            <p className="text-white/80 mb-[var(--space-48)] max-w-3xl mx-auto font-sans">
+              Deploy on AWS, Azure, and Google Cloud — with hybrid and auto-scaling capabilities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
               <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                 Start Cloud Migration
               </Button>
@@ -187,85 +231,62 @@ export default function CloudSolutionsPage() {
         </div>
       </section>
 
-      {/* Cloud Benefits */}
+      {/* Why Choose Our Cloud Infrastructure Services */}
       <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
-            <h2 className="mb-[var(--space-24)] text-white font-sans">Why Choose Cloud Solutions?</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
-              Discover the transformative benefits of cloud computing for your business operations and growth.
+            <h2 className="mb-[var(--space-16)] text-white font-sans">Why Choose Our Cloud Infrastructure Services</h2>
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+              Our cloud infrastructure solutions are built to support your business at every stage — from initial deployment to ongoing optimization. Here's how we help you succeed:
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-32)]">
-            {cloudBenefits.map((benefit, index) => (
-              <Card key={index} className="text-center p-[var(--space-32)] hover:shadow-lg transition-shadow glow-gold-subtle bg-gray-900 border-gray-800">
-                <div className="flex justify-center mb-[var(--space-16)] text-yellow-400">
-                  {benefit.icon}
+            {whyChooseCloud.map((item, i) => (
+              <div key={i} className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+                <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                  {item.icon}
+                  <h3 className="text-white font-sans">{item.title}</h3>
                 </div>
-                <div className="text-[length:var(--text-h4)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">
-                  {benefit.metric}
-                </div>
-                <h4 className="mb-[var(--space-12)] text-white font-sans">{benefit.title}</h4>
-                <p className="text-gray-400 text-[length:var(--text-body)] font-sans">{benefit.description}</p>
-              </Card>
+                <p className="text-gray-400 font-sans">{item.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Our Cloud Infrastructure Process */}
       <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
-            <h2 className="mb-[var(--space-24)] text-white font-sans">Cloud Services</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
-              Comprehensive cloud solutions designed to accelerate your digital transformation journey.
-            </p>
+            <h2 className="mb-[var(--space-16)] text-white font-sans">Our Cloud Infrastructure Process</h2>
           </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-32)]">
+            {cloudProcess.map((step, idx) => (
+              <div key={idx} className="text-center p-[var(--space-32)] bg-black border border-gray-800 rounded-xl">
+                <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                  {step.step}
+                </div>
+                <h3 className="text-white font-sans mb-[var(--space-12)]">{step.title}</h3>
+                <p className="text-gray-400 font-sans">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-[var(--space-32)]">
-            {services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-gray-800 hover:border-yellow-400/30 glow-gold-subtle bg-black">
-                <CardHeader>
-                  <div className="flex items-center gap-[var(--space-16)] mb-[var(--space-16)]">
-                    <div className="p-[var(--space-12)] bg-yellow-400/10 rounded-lg text-yellow-400">
-                      {service.icon}
-                    </div>
-                    <CardTitle className="group-hover:text-yellow-400 transition-colors text-white font-sans">{service.title}</CardTitle>
-                  </div>
-                  <p className="text-gray-400 font-sans">{service.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <div className="mb-[var(--space-24)]">
-                    <h4 className="font-medium mb-[var(--space-12)] text-white font-sans">Key Features:</h4>
-                    <ul className="space-y-[var(--space-8)]">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-[length:var(--text-body)] text-gray-400 font-sans">
-                          <CheckCircle className="w-4 h-4 text-yellow-400 mr-[var(--space-8)] flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="mb-[var(--space-24)]">
-                    <h4 className="font-medium mb-[var(--space-12)] text-white font-sans">Benefits:</h4>
-                    <div className="flex flex-wrap gap-[var(--space-8)]">
-                      {service.benefits.map((benefit, benefitIndex) => (
-                        <Badge key={benefitIndex} variant="secondary" className="bg-yellow-400/10 text-yellow-400 border-yellow-400/20 font-sans">
-                          {benefit}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <Button variant="outline" className="w-full group-hover:bg-yellow-400 group-hover:text-black group-hover:border-yellow-400 transition-all duration-300 border-gray-700 text-white font-sans">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-[var(--space-8)] group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+      {/* Real Results */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h2 className="mb-[var(--space-16)] text-white font-sans">Real Results</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-[var(--space-32)]">
+            {cloudResults.map((r, i) => (
+              <div key={i} className="text-center p-[var(--space-32)] bg-black border border-gray-800 rounded-xl">
+                <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">{r.value}</div>
+                <div className="text-white font-sans mb-[var(--space-8)]">{r.label}</div>
+                <p className="text-gray-400 font-sans">{r.sub}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -276,7 +297,7 @@ export default function CloudSolutionsPage() {
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Cloud Platforms We Support</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               We're certified experts in all major cloud platforms, helping you choose the right solution for your needs.
             </p>
           </div>
@@ -312,7 +333,7 @@ export default function CloudSolutionsPage() {
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Our Cloud Migration Process</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               A proven methodology that ensures successful cloud migration with minimal risk and downtime.
             </p>
           </div>
@@ -329,7 +350,7 @@ export default function CloudSolutionsPage() {
                   )}
                 </div>
                 <h4 className="mb-[var(--space-12)] text-white group-hover:text-yellow-400 transition-colors font-sans">{step.title}</h4>
-                <p className="text-gray-400 text-[length:var(--text-body)] font-sans">{step.description}</p>
+                <p className="text-gray-400 text-[var(--text-body)] font-sans">{step.description}</p>
               </div>
             ))}
           </div>
@@ -354,19 +375,19 @@ export default function CloudSolutionsPage() {
             </div>
             <div className="grid grid-cols-2 gap-[var(--space-24)]">
               <div className="text-center">
-                <div className="text-[length:var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">60%</div>
+                <div className="text-[var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">60%</div>
                 <p className="text-white/80 font-sans">Cost Reduction</p>
               </div>
               <div className="text-center">
-                <div className="text-[length:var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">3x</div>
+                <div className="text-[var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">3x</div>
                 <p className="text-white/80 font-sans">Performance Improvement</p>
               </div>
               <div className="text-center">
-                <div className="text-[length:var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">99.9%</div>
+                <div className="text-[var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">99.9%</div>
                 <p className="text-white/80 font-sans">Uptime Achieved</p>
               </div>
               <div className="text-center">
-                <div className="text-[length:var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">6 Months</div>
+                <div className="text-[var(--text-h2)] font-bold mb-[var(--space-8)] font-sans">6 Months</div>
                 <p className="text-white/80 font-sans">Migration Timeline</p>
               </div>
             </div>
@@ -380,7 +401,7 @@ export default function CloudSolutionsPage() {
           <Card className="max-w-4xl mx-auto text-center p-[var(--space-48)] border-gray-800 bg-gray-900">
             <Cloud className="w-16 h-16 text-yellow-400 mx-auto mb-[var(--space-24)]" />
             <h2 className="mb-[var(--space-24)] text-white font-sans">Is Your Business Ready for the Cloud?</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 mb-[var(--space-32)] max-w-2xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 mb-[var(--space-32)] max-w-2xl mx-auto font-sans">
               Take our comprehensive cloud readiness assessment to understand your current state and identify opportunities for cloud adoption.
             </p>
             <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center">
@@ -399,7 +420,7 @@ export default function CloudSolutionsPage() {
       <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
         <div className="container mx-auto text-center">
           <h2 className="mb-[var(--space-24)] text-white font-sans">Ready to Move to the Cloud?</h2>
-          <p className="text-[length:var(--text-body-large)] text-gray-400 mb-[var(--space-48)] max-w-2xl mx-auto font-sans">
+          <p className="text-[var(--text-body-large)] text-gray-400 mb-[var(--space-48)] max-w-2xl mx-auto font-sans">
             Let our cloud experts help you design and implement a cloud strategy that drives innovation and reduces costs.
           </p>
           <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center">
@@ -409,6 +430,164 @@ export default function CloudSolutionsPage() {
             <Button size="lg" variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-sans">
               Download Cloud Guide
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Branding & Visual Identity Hero Section */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-[var(--space-24)] bg-yellow-400/10 text-yellow-400 border-yellow-400/20 font-sans">
+              Branding & Visual Identity
+            </Badge>
+            <h2 className="mb-[var(--space-24)] text-white font-sans">
+              Build a Strong, Cohesive Brand That Stands Out
+            </h2>
+            <p className="text-[var(--text-body-large)] mb-[var(--space-16)] text-gray-300 max-w-3xl mx-auto font-sans">
+              Create a brand that reflects your values, resonates with your audience, and stands out in a crowded market.
+            </p>
+            <p className="text-gray-400 mb-[var(--space-16)] font-sans">
+              At 79Ratio, we help businesses build strong, consistent, and professional brand identities that communicate your message clearly and effectively. Whether you're launching a new business, rebranding, or refining your visual identity, our branding and visual identity services are designed to build trust, increase recognition, and drive engagement.
+            </p>
+            <p className="text-yellow-400 font-medium max-w-3xl mx-auto font-sans">
+              Create a brand that works for your business — and your audience.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Our Branding & Visual Identity Services */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h3 className="mb-[var(--space-16)] text-white font-sans">Why Choose Our Branding & Visual Identity Services</h3>
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+              Our branding and visual identity solutions are built to support your business at every stage — from initial planning to ongoing development. Here's how we help you succeed:
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-7 gap-[var(--space-32)]">
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Target className="w-6 h-6" />
+                <h4 className="text-white font-sans">Strategic Brand Development</h4>
+              </div>
+              <p className="text-gray-400 font-sans">We help you define your brand's identity, values, and personality through in-depth research, audience analysis, and brand strategy sessions. Our goal is to create a brand that resonates with your audience and reflects your business's mission.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Palette className="w-6 h-6" />
+                <h4 className="text-white font-sans">Professional Logo Design</h4>
+              </div>
+              <p className="text-gray-400 font-sans">We create unique, memorable, and visually compelling logos that represent your brand's identity and values. Our designs are built to stand out, be scalable, and work across all platforms - from digital to print.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Heart className="w-6 h-6" />
+                <h4 className="text-white font-sans">Consistent Visual Identity</h4>
+              </div>
+              <p className="text-gray-400 font-sans">We ensure that all your branding materials - from websites and apps to business cards and marketing collateral - are consistent, cohesive, and aligned with your brand's identity. This helps build brand recognition and trust with your audience.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Palette className="w-6 h-6" />
+                <h4 className="text-white font-sans">Typography & Color Strategy</h4>
+              </div>
+              <p className="text-gray-400 font-sans">We develop custom typography and color schemes that reflect your brand's personality and values. These elements are used consistently across all your digital and print materials to create a unified brand experience.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Monitor className="w-6 h-6" />
+                <h4 className="text-white font-sans">Brand Guidelines & Documentation</h4>
+              </div>
+              <p className="text-gray-400 font-sans">We provide comprehensive brand guidelines that outline how to use your brand's logo, colors, fonts, and other visual elements. This ensures consistency across all platforms and helps your team maintain brand integrity.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <TrendingUp className="w-6 h-6" />
+                <h4 className="text-white font-sans">Future-Ready and Scalable</h4>
+              </div>
+              <p className="text-gray-400 font-sans">Our branding and visual identity solutions are built to grow with your business. Whether you're launching a new product, expanding your operations, or entering new markets, our solutions ensure long-term brand consistency and adaptability.</p>
+            </div>
+            <div className="p-[var(--space-32)] bg-black border border-gray-800 rounded-xl text-left hover:border-yellow-400/30 transition-colors">
+              <div className="flex items-center gap-[var(--space-12)] mb-[var(--space-12)] text-yellow-400">
+                <Users className="w-6 h-6" />
+                <h4 className="text-white font-sans">Expert Support & Management</h4>
+              </div>
+              <p className="text-gray-400 font-sans">Our team of brand strategists, designers, and visual identity experts provides ongoing support, guidance, and updates. We help you refine your brand, maintain consistency, and stay ahead of the competition.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Branding & Visual Identity Process */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h3 className="mb-[var(--space-16)] text-white font-sans">Our Branding & Visual Identity Process</h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-[var(--space-32)]">
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                1
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Discovery & Research</h4>
+              <p className="text-gray-400 font-sans">We conduct audience research, competitor analysis, and brand strategy sessions to understand your business and audience.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                2
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Brand Strategy & Development</h4>
+              <p className="text-gray-400 font-sans">We define your brand's identity, values, and personality and develop a comprehensive brand strategy.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                3
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Design & Development</h4>
+              <p className="text-gray-400 font-sans">We create logos, color schemes, typography, and other visual elements that reflect your brand's identity.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                4
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Documentation & Guidelines</h4>
+              <p className="text-gray-400 font-sans">We provide comprehensive brand guidelines to ensure consistent use of your brand across all platforms.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                5
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Implementation & Support</h4>
+              <p className="text-gray-400 font-sans">We help you launch your brand, maintain consistency, and provide ongoing support as your business grows.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Branding & Visual Identity Results */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h3 className="mb-[var(--space-16)] text-white font-sans">Real Results</h3>
+          </div>
+          <div className="grid md:grid-cols-3 gap-[var(--space-32)]">
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Strong</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Brand Recognition</div>
+              <p className="text-gray-400 font-sans">strong brand recognition for a mid-sized tech startup with a custom logo and brand identity</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Increased</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Customer Trust</div>
+              <p className="text-gray-400 font-sans">increased customer trust and higher engagement with a consistent and professional brand presence</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Improved</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Brand Consistency</div>
+              <p className="text-gray-400 font-sans">improved brand consistency across all platforms, including websites, apps, and marketing materials</p>
+            </Card>
           </div>
         </div>
       </section>

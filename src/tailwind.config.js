@@ -18,12 +18,12 @@ export default {
       },
       colors: {
         primary: {
-          blue: '#FACC15',
-          DEFAULT: '#FACC15'
+          blue: '#9FB3DF',
+          DEFAULT: '#9FB3DF'
         },
         secondary: {
-          blue: '#EAB308',
-          DEFAULT: '#EAB308'  
+          blue: '#9EC6F3',
+          DEFAULT: '#9EC6F3'  
         },
         background: {
           light: '#000000',
@@ -31,8 +31,8 @@ export default {
           DEFAULT: '#000000'
         },
         accent: {
-          primary: '#FACC15',
-          secondary: '#EAB308'
+          primary: '#9FB3DF',
+          secondary: '#9EC6F3'
         },
         text: {
           primary: '#FFFFFF',

@@ -1,42 +1,99 @@
-import React from 'react';
-import logoImage from '@/assets/79ratio-logo-new.webp';
+import logoImage from '../assets/79ratio-logo-new.webp';
+import { cn } from './ui/utils';
 
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   variant?: 'light' | 'dark';
   className?: string;
   showText?: boolean;
+  imageClassName?: string;
 }
 
-export default function Logo({ size = 'md', variant = 'light', className = '', showText = false }: LogoProps) {
-  const sizeHeights: Record<NonNullable<LogoProps['size']>, string> = {
-    sm: 'h-8',
-    md: 'h-12',
-    lg: 'h-16',
-    xl: 'h-20',
+export default function Logo({
+  size = 'md',
+  variant = 'light',
+  className = '',
+  imageClassName = '',
+  showText = false,
+}: LogoProps) {
+  const sizeConfig: Record<
+    NonNullable<LogoProps['size']>,
+    {
+      image: string;
+      primaryText: string;
+      secondaryText: string;
+      gap: string;
+    }
+  > = {
+    xs: {
+      image: 'h-6',
+      primaryText: 'text-base',
+      secondaryText: 'text-[0.65rem]',
+      gap: 'gap-2',
+    },
+    sm: {
+      image: 'h-8',
+      primaryText: 'text-lg',
+      secondaryText: 'text-[0.7rem]',
+      gap: 'gap-2',
+    },
+    md: {
+      image: 'h-10',
+      primaryText: 'text-xl',
+      secondaryText: 'text-xs',
+      gap: 'gap-3',
+    },
+    lg: {
+      image: 'h-14',
+      primaryText: 'text-2xl',
+      secondaryText: 'text-sm',
+      gap: 'gap-3',
+    },
+    xl: {
+      image: 'h-16',
+      primaryText: 'text-3xl',
+      secondaryText: 'text-sm',
+      gap: 'gap-4',
+    },
+    xxl: {
+      image: 'h-20',
+      primaryText: 'text-4xl',
+      secondaryText: 'text-sm',
+      gap: 'gap-5',
+    },
   };
 
+  const { image, primaryText, secondaryText, gap } =
+    sizeConfig[size] ?? sizeConfig.md;
+
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={cn('flex items-center', gap, className)}>
       <img
         src={logoImage}
         alt="79Ratio Logo"
-        className={`${sizeHeights[size]} w-auto object-contain`}
+        className={cn(
+          `${image} w-auto max-w-full object-contain`,
+          imageClassName,
+        )}
       />
 
       {showText && (
         <div className="flex flex-col">
           <span
-            className={`font-bold tracking-tight font-sans ${
-              size === 'sm' ? 'text-lg' : size === 'md' ? 'text-xl' : 'text-2xl'
-            } ${variant === 'light' ? 'text-white' : 'text-black'}`}
+            className={cn(
+              'font-bold tracking-tight font-sans leading-none',
+              primaryText,
+              variant === 'light' ? 'text-white' : 'text-black',
+            )}
           >
             79Ratio
           </span>
           <span
-            className={`text-xs tracking-wide uppercase ${
-              variant === 'light' ? 'text-gray-300' : 'text-gray-600'
-            }`}
+            className={cn(
+              'tracking-wide uppercase',
+              secondaryText,
+              variant === 'light' ? 'text-gray-300' : 'text-gray-600',
+            )}
           >
             Technology Solutions
           </span>

@@ -146,7 +146,7 @@ export default function Header() {
               onMouseEnter={() => setIsServicesMenuOpen(true)}
               onMouseLeave={() => setIsServicesMenuOpen(false)}
             >
-              <button className="flex items-center gap-[var(--space-8)] text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)]">
+              <button className="flex items-center gap-[var(--space-8)] text-[var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)]">
                 <span>What We Do</span>
                 <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isServicesMenuOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -208,11 +208,11 @@ export default function Header() {
         <div className="hidden lg:flex items-center space-x-4">
           <button 
             onClick={() => handleNavigation('final-cta')}
-            className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[length:var(--text-body)]"
+            className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[var(--text-body)]"
           >
             Schedule a Call
           </button>
-          <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[length:var(--text-body)]">
+          <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[var(--text-body)]">
             <Lock className="w-5 h-5 mr-2" />
             Client Login
           </a>
@@ -255,11 +255,11 @@ export default function Header() {
                 <div className="pt-6 flex flex-col space-y-4">
                     <button 
                       onClick={() => handleNavigation('final-cta')}
-                      className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[length:var(--text-body)]"
+                      className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[var(--text-body)]"
                     >
                         Schedule a Call
                     </button>
-                    <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[length:var(--text-body)]">
+                    <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[var(--text-body)]">
                         <Lock className="w-5 h-5 mr-2" />
                         Client Login
                     </a>

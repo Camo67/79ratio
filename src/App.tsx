@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import AppRouter from './AppRouter'
 import AppHashRouter from './AppHashRouter'
 import AppFallback from './AppFallback'
@@ -6,6 +6,7 @@ import AppFallback from './AppFallback'
 export default function App() {
   const [useHashRouter, setUseHashRouter] = useState(false)
   const [hasRouterError, setHasRouterError] = useState(false)
+  const [isRouterReady, setIsRouterReady] = useState(false)
 
   useEffect(() => {
     // Detect deployment environment and routing needs
@@ -19,43 +20,26 @@ export default function App() {
     const hasHtmlExtension = path.includes('.html')
     const isStaticHosting = path.includes('preview') || path.includes('figma') || path.includes('netlify') || path.includes('vercel')
     
-    // Use HashRouter for GitHub Pages and static hosting environments
+    // Use HashRouter for GitHub Pages and static environments
     if (isGitHubPages || isFileProtocol || hasHtmlExtension || isStaticHosting) {
       setUseHashRouter(true)
     }
-
-    // Add error listener for routing issues
-    const handleError = (event: ErrorEvent) => {
-      if (event.error?.message?.includes('router') || 
-          event.error?.message?.includes('route') ||
-          event.error?.message?.includes('navigation')) {
-        console.warn('Router error detected, falling back to HashRouter:', event.error)
-        setHasRouterError(true)
-        setUseHashRouter(true)
-      }
-    }
-
-    // Add unhandled rejection listener
-    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      if (event.reason?.message?.includes('router') || 
-          event.reason?.message?.includes('route')) {
-        console.warn('Router promise rejection, falling back to HashRouter:', event.reason)
-        setHasRouterError(true)
-        setUseHashRouter(true)
-      }
-    }
-
-    window.addEventListener('error', handleError)
-    window.addEventListener('unhandledrejection', handleUnhandledRejection)
     
-    return () => {
-      window.removeEventListener('error', handleError)
-      window.removeEventListener('unhandledrejection', handleUnhandledRejection)
-    }
+    // Mark router as ready
+    setIsRouterReady(true)
   }, [])
 
+  // Show loading while determining router
+  if (!isRouterReady) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-yellow-400 text-2xl">Loading...</div>
+      </div>
+    )
+  }
+
   // Fallback to static app if routing completely fails
-  if (hasRouterError && !useHashRouter) {
+  if (hasRouterError) {
     return <AppFallback />
   }
 

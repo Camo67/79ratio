@@ -1,5 +1,6 @@
 import { Button } from './ui/button'
 import { Card } from './ui/card'
+import { Link } from 'react-router-dom'
 
 const FinalCTA = () => {
   const base = import.meta.env.BASE_URL || '/'
@@ -23,12 +24,14 @@ const FinalCTA = () => {
             <p className="text-lg text-gray-400 mb-12 leading-relaxed font-sans">
               Speak with the team!
             </p>
-            <Button 
-              size="lg" 
-              className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button px-12 py-6 text-body-large font-sans"
-            >
-              Talk to the Humans at 79Ratio
-            </Button>
+            <Link to="/get-started">
+              <Button 
+                size="lg" 
+                className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button px-12 py-6 text-body-large font-sans"
+              >
+                Talk to the Humans at 79Ratio
+              </Button>
+            </Link>
           </div>
         </Card>
       </div>

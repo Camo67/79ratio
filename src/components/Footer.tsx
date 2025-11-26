@@ -53,19 +53,43 @@ const Footer = () => {
                 <span>hello@79ratio.com</span>
               </div>
             </div>
+            <div className="flex space-x-4 mt-6">
+              <a href="https://www.facebook.com/79Ratio/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400">
+                <Facebook className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-yellow-400">
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a href="https://www.linkedin.com/company/79-ratio" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-yellow-400">
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-base">Solutions</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="/solutions/digital-systems" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Digital Systems
+                </a>
+              </li>
+              <li>
+                <a href="/solutions/design-accessibility" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Design & Accessibility
+                </a>
+              </li>
+              <li>
+                <a href="/solutions/compliance" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Compliance & Optimization
+                </a>
+              </li>
+              <li>
+                <a href="/get-started" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Support & Contact
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -73,13 +97,26 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4 text-base">Services</h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service}>
-                  <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
-                    {service}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="/solutions/cybersecurity-solutions" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Cybersecurity
+                </a>
+              </li>
+              <li>
+                <a href="/solutions/cloud" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Cloud Solutions
+                </a>
+              </li>
+              <li>
+                <a href="/managed-services" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  24/7 Monitoring
+                </a>
+              </li>
+              <li>
+                <a href="/solutions" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  IT Consulting
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -101,13 +138,26 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4 text-base">Company</h3>
             <ul className="space-y-2">
-              {companyLinks.map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="/about-us" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/careers" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="/get-started" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="/blog" className="text-gray-400 hover:text-yellow-400 transition-colors hover-underline">
+                  Blog
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -15,8 +15,13 @@ import {
   TrendingUp,
   Clock,
   Users,
-  Target
+  Target,
+  Palette,
+  Heart,
+  Monitor
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 const baseCyber = import.meta.env.BASE_URL || '/';
 const cybersecurityBg = encodeURI(`${baseCyber}it-helpdesk-services-24-7.jpg`);
 
@@ -149,7 +154,9 @@ const securityStats = [
   }
 ];
 
-export default function CybersecurityPage() {
+const CybersecurityPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -171,16 +178,15 @@ export default function CybersecurityPage() {
             <h1 className="mb-[var(--space-24)] text-white font-sans">
               Advanced Cybersecurity That Protects Your Business
             </h1>
-            <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
+            <p className="text-[var(--text-body-large)] mb-[var(--space-48)] opacity-90 max-w-3xl font-sans">
               Comprehensive cybersecurity solutions designed to protect your business from evolving threats. Our advanced security measures ensure your data, systems, and operations remain secure.
             </p>
             <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
-              <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
-                Get Security Assessment
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
-                Emergency Response
-              </Button>
+              <ScheduleCallModal>
+                <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
+                  Get Security Assessment
+                </Button>
+              </ScheduleCallModal>
             </div>
           </div>
         </div>
@@ -195,10 +201,10 @@ export default function CybersecurityPage() {
                 <div className="flex justify-center mb-[var(--space-16)] text-yellow-400">
                   {stat.icon}
                 </div>
-                <div className="text-[length:var(--text-h3)] font-bold text-white mb-[var(--space-8)] font-sans">
+                <div className="text-[var(--text-h3)] font-bold text-white mb-[var(--space-8)] font-sans">
                   {stat.value}
                 </div>
-                <div className="text-[length:var(--text-body)] text-gray-400 font-sans">
+                <div className="text-[var(--text-body)] text-gray-400 font-sans">
                   {stat.label}
                 </div>
               </div>
@@ -212,7 +218,7 @@ export default function CybersecurityPage() {
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Protection Against Modern Threats</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               Our comprehensive security solutions protect against the most common and sophisticated cyber threats.
             </p>
           </div>
@@ -224,7 +230,7 @@ export default function CybersecurityPage() {
                   {threat.icon}
                 </div>
                 <h4 className="mb-[var(--space-12)] text-white font-sans">{threat.title}</h4>
-                <p className="text-gray-400 text-[length:var(--text-body)] mb-[var(--space-16)] font-sans">{threat.description}</p>
+                <p className="text-gray-400 text-[var(--text-body)] mb-[var(--space-16)] font-sans">{threat.description}</p>
                 <Badge variant="secondary" className="bg-red-900/30 text-red-400 border-red-800 font-sans">
                   {threat.protection}
                 </Badge>
@@ -235,11 +241,12 @@ export default function CybersecurityPage() {
       </section>
 
       {/* Services Grid */}
+      {/* Why Choose Our Branding & Visual Identity Services */}
       <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Cybersecurity Services</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               Comprehensive cybersecurity solutions designed to protect your business from all angles.
             </p>
           </div>
@@ -261,7 +268,7 @@ export default function CybersecurityPage() {
                     <h4 className="font-medium mb-[var(--space-12)] text-white font-sans">Key Features:</h4>
                     <ul className="space-y-[var(--space-8)]">
                       {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-[length:var(--text-body)] text-gray-400 font-sans">
+                        <li key={featureIndex} className="flex items-center text-[var(--text-body)] text-gray-400 font-sans">
                           <CheckCircle className="w-4 h-4 text-yellow-400 mr-[var(--space-8)] flex-shrink-0" />
                           {feature}
                         </li>
@@ -291,12 +298,84 @@ export default function CybersecurityPage() {
         </div>
       </section>
 
-      {/* Security Framework */}
+      {/* Our Branding & Visual Identity Process */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h3 className="mb-[var(--space-16)] text-white font-sans">Our Branding & Visual Identity Process</h3>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-[var(--space-32)]">
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                1
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Discovery & Research</h4>
+              <p className="text-gray-400 font-sans">We conduct audience research, competitor analysis, and brand strategy sessions to understand your business and audience.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                2
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Brand Strategy & Development</h4>
+              <p className="text-gray-400 font-sans">We define your brand's identity, values, and personality and develop a comprehensive brand strategy.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                3
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Design & Development</h4>
+              <p className="text-gray-400 font-sans">We create logos, color schemes, typography, and other visual elements that reflect your brand's identity.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                4
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Documentation & Guidelines</h4>
+              <p className="text-gray-400 font-sans">We provide comprehensive brand guidelines to ensure consistent use of your brand across all platforms.</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center mx-auto mb-[var(--space-12)] font-bold">
+                5
+              </div>
+              <h4 className="text-white font-sans mb-[var(--space-12)]">Implementation & Support</h4>
+              <p className="text-gray-400 font-sans">We help you launch your brand, maintain consistency, and provide ongoing support as your business grows.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Branding & Visual Identity Results */}
+      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-black">
+        <div className="container mx-auto">
+          <div className="text-center mb-[var(--space-64)]">
+            <h3 className="mb-[var(--space-16)] text-white font-sans">Real Results</h3>
+          </div>
+          <div className="grid md:grid-cols-3 gap-[var(--space-32)]">
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Strong</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Brand Recognition</div>
+              <p className="text-gray-400 font-sans">strong brand recognition for a mid-sized tech startup with a custom logo and brand identity</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Increased</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Customer Trust</div>
+              <p className="text-gray-400 font-sans">increased customer trust and higher engagement with a consistent and professional brand presence</p>
+            </Card>
+            <Card className="text-center p-[var(--space-32)] bg-black border-gray-800">
+              <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">Improved</div>
+              <div className="text-white font-sans mb-[var(--space-8)]">Brand Consistency</div>
+              <p className="text-gray-400 font-sans">improved brand consistency across all platforms, including websites, apps, and marketing materials</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gray-900">
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Our Security Framework</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               Based on the NIST Cybersecurity Framework, our approach ensures comprehensive protection across all security domains.
             </p>
           </div>
@@ -313,7 +392,7 @@ export default function CybersecurityPage() {
                   )}
                 </div>
                 <h4 className="mb-[var(--space-12)] text-white group-hover:text-yellow-400 transition-colors font-sans">{step.title}</h4>
-                <p className="text-gray-400 text-[length:var(--text-body)] font-sans">{step.description}</p>
+                <p className="text-gray-400 text-[var(--text-body)] font-sans">{step.description}</p>
               </div>
             ))}
           </div>
@@ -344,7 +423,7 @@ export default function CybersecurityPage() {
           <div className="grid lg:grid-cols-2 gap-[var(--space-48)] items-center">
             <div>
               <h2 className="mb-[var(--space-24)] text-white font-sans">Compliance & Certifications</h2>
-              <p className="text-[length:var(--text-body-large)] text-gray-400 mb-[var(--space-32)] font-sans">
+              <p className="text-[var(--text-body-large)] text-gray-400 mb-[var(--space-32)] font-sans">
                 Our cybersecurity solutions help you achieve and maintain compliance with industry standards and regulations.
               </p>
               <div className="grid grid-cols-2 gap-[var(--space-16)]">
@@ -368,19 +447,19 @@ export default function CybersecurityPage() {
             </div>
             <div className="grid grid-cols-2 gap-[var(--space-24)]">
               <Card className="text-center p-[var(--space-24)] bg-gray-900 border-gray-800">
-                <div className="text-[length:var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">100%</div>
+                <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">100%</div>
                 <p className="text-gray-400 font-sans">Compliance Rate</p>
               </Card>
               <Card className="text-center p-[var(--space-24)] bg-gray-900 border-gray-800">
-                <div className="text-[length:var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">500+</div>
+                <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">500+</div>
                 <p className="text-gray-400 font-sans">Protected Clients</p>
               </Card>
               <Card className="text-center p-[var(--space-24)] bg-gray-900 border-gray-800">
-                <div className="text-[length:var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">0</div>
+                <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">0</div>
                 <p className="text-gray-400 font-sans">Data Breaches</p>
               </Card>
               <Card className="text-center p-[var(--space-24)] bg-gray-900 border-gray-800">
-                <div className="text-[length:var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">24/7</div>
+                <div className="text-[var(--text-h2)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">24/7</div>
                 <p className="text-gray-400 font-sans">Monitoring</p>
               </Card>
             </div>
@@ -388,24 +467,10 @@ export default function CybersecurityPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-[var(--space-96)] px-[var(--space-24)] bg-gradient-to-r from-accent-primary to-accent-secondary text-white">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-[var(--space-24)] text-white font-sans">Secure Your Business Today</h2>
-          <p className="text-[length:var(--text-body-large)] text-white/80 mb-[var(--space-48)] max-w-2xl mx-auto font-sans">
-            Don't wait for a security incident to happen. Let our cybersecurity experts assess your current security posture and implement comprehensive protection.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center">
-            <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
-              Schedule Security Assessment
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
-              Download Security Guide
-            </Button>
-          </div>
-        </div>
-      </section>
+      <FinalCTA />
       <Footer />
     </div>
   );
 }
+
+export default CybersecurityPage;

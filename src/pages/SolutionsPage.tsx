@@ -119,19 +119,23 @@ export default function SolutionsPage() {
         }}
       >
         <div className="container mx-auto text-center">
-          <h1 className="mb-(--space-24) max-w-4xl mx-auto text-white font-sans">
+          <h1 className="mb-[var(--space-24)] max-w-4xl mx-auto text-white font-sans">
             Comprehensive IT Solutions for Modern Business
           </h1>
-          <p className="text-(length:--text-body-large) mb-[var(--space-48)] max-w-3xl mx-auto opacity-90 font-sans">
+          <p className="text-[var(--text-body-large)] mb-[var(--space-48)] max-w-3xl mx-auto opacity-90 font-sans">
             Transform your business with our integrated suite of technology solutions designed to enhance efficiency, security, and growth potential.
           </p>
-          <div className="flex flex-col sm:flex-row gap-(--space-16) justify-center">
-            <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
-              Explore Solutions
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
-              Schedule Consultation
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center">
+            <Link to="/get-started">
+              <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
+                Explore Solutions
+              </Button>
+            </Link>
+            <Link to="/get-started">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -145,10 +149,10 @@ export default function SolutionsPage() {
                 <div className="flex justify-center mb-[var(--space-16)] text-yellow-400">
                   {stat.icon}
                 </div>
-                <div className="text-[length:var(--text-h3)] font-bold text-white mb-[var(--space-8)] font-sans">
+                <div className="text-[var(--text-h3)] font-bold text-white mb-[var(--space-8)] font-sans">
                   {stat.value}
                 </div>
-                <div className="text-[length:var(--text-body)] text-gray-400 font-sans">
+                <div className="text-[var(--text-body)] text-gray-400 font-sans">
                   {stat.label}
                 </div>
               </div>
@@ -162,7 +166,7 @@ export default function SolutionsPage() {
         <div className="container mx-auto">
           <div className="text-center mb-[var(--space-64)]">
             <h2 className="mb-[var(--space-24)] text-white font-sans">Our Solution Categories</h2>
-            <p className="text-[length:var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 max-w-3xl mx-auto font-sans">
               Choose from our comprehensive range of technology solutions, each designed to address specific business challenges and drive measurable results.
             </p>
           </div>
@@ -187,7 +191,7 @@ export default function SolutionsPage() {
                     
                     <ul className={`space-y-[var(--space-8)] mb-[var(--space-32)] ${isCentered ? 'mx-auto' : ''}`}>
                       {category.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className={`flex items-center text-[length:var(--text-body)] text-gray-400 font-sans ${isCentered ? 'justify-center' : ''}`}>
+                        <li key={featureIndex} className={`flex items-center text-[var(--text-body)] text-gray-400 font-sans ${isCentered ? 'justify-center' : ''}`}>
                           <CheckCircle className="w-4 h-4 text-yellow-400 mr-[var(--space-8)] flex-shrink-0" />
                           {feature}
                         </li>
@@ -214,16 +218,20 @@ export default function SolutionsPage() {
           <h2 className="mb-[var(--space-24)] text-white font-sans">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-[length:var(--text-body-large)] mb-[var(--space-48)] max-w-2xl mx-auto opacity-90 font-sans">
+          <p className="text-[var(--text-body-large)] mb-[var(--space-48)] max-w-2xl mx-auto opacity-90 font-sans">
             Let our experts help you choose the right combination of solutions to achieve your business objectives.
           </p>
           <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center">
-            <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
-              Schedule Free Consultation
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
-              Contact Our Team
-            </Button>
+            <Link to="/get-started">
+              <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
+                Schedule Free Consultation
+              </Button>
+            </Link>
+            <Link to="/get-started">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-accent-primary font-sans">
+                Contact Our Team
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

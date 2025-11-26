@@ -19,6 +19,10 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Deprecation handling */
+    "ignoreDeprecations": "6.0",
 
     /* Path mapping */
     "baseUrl": ".",

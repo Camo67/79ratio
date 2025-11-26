@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Lock, Menu, X, ChevronDown } from 'lucide-react';
 import Logo from './Logo';
@@ -18,43 +18,29 @@ const scrollToSection = (sectionId: string) => {
   }
 };
 
-// --- Enhanced navigation with proper routing ---
-const navigateToServices = (navigate: any, location: any, category?: string) => {
-  if (location.pathname === '/') {
-    scrollToSection('services');
-  } else {
-    navigate('/#services');
-  }
-  
-  if (category) {
-    setTimeout(() => {
-      console.log(`Navigated to services - ${category} category`);
-    }, 1000);
-  }
-};
-
 // --- Mega Menu Data with proper routing ---
-const megaMenuData = {
+const megaMenuData: Record<string, Array<{name: string; href: string; route: string; category?: string}>> = {
   'Digital Systems': [
-    { name: 'Cloud Infrastructure', href: '/solutions/digital-systems', route: '/solutions/digital-systems', category: 'digital-systems' },
-    { name: 'Virtualization Solutions', href: '/solutions/digital-systems', route: '/solutions/digital-systems', category: 'digital-systems' },
-    { name: 'Network Architecture', href: '/solutions/digital-systems', route: '/solutions/digital-systems', category: 'digital-systems' },
-    { name: 'System Integration', href: '/solutions/digital-systems', route: '/solutions/digital-systems', category: 'digital-systems' },
+    { name: 'Cloud Infrastructure', href: '/solutions/cloud-infrastructure', route: '/solutions/cloud-infrastructure', category: 'digital-systems' },
+    { name: 'Virtualization Solutions', href: '/solutions/virtualization', route: '/solutions/virtualization', category: 'digital-systems' },
+    { name: 'Network Architecture', href: '/solutions/network-architecture', route: '/solutions/network-architecture', category: 'digital-systems' },
+    { name: 'System Integration', href: '/solutions/system-integration', route: '/solutions/system-integration', category: 'digital-systems' },
   ],
   'Design & Accessibility': [
-    { name: 'UX/UI Design', href: '/solutions/design-accessibility', route: '/solutions/design-accessibility', category: 'design-accessibility' },
-    { name: 'Accessibility Audits', href: '/solutions/design-accessibility', route: '/solutions/design-accessibility', category: 'design-accessibility' },
-    { name: 'Branding & Visual Identity', href: '/solutions/design-accessibility', route: '/solutions/design-accessibility', category: 'design-accessibility' },
-    { name: 'User Experience Optimization', href: '/solutions/design-accessibility', route: '/solutions/design-accessibility', category: 'design-accessibility' },
+    { name: 'UX/UI Design', href: '/solutions/ux-ui-design', route: '/solutions/ux-ui-design', category: 'design-accessibility' },
+    { name: 'Accessibility Audits', href: '/solutions/accessibility-audits', route: '/solutions/accessibility-audits', category: 'design-accessibility' },
+    { name: 'Branding & Visual Identity', href: '/solutions/branding', route: '/solutions/branding', category: 'design-accessibility' },
+    { name: 'User Experience Optimization', href: '/solutions/user-experience-optimization', route: '/solutions/user-experience-optimization', category: 'design-accessibility' },
   ],
   'Compliance & Optimization': [
-    { name: 'Business Process Automation', href: '/solutions/compliance', route: '/solutions/compliance', category: 'compliance' },
-    { name: 'Compliance Management', href: '/solutions/compliance', route: '/solutions/compliance', category: 'compliance' },
-    { name: 'Performance Analytics', href: '/solutions/compliance', route: '/solutions/compliance', category: 'compliance' },
-    { name: 'Workflow Optimization', href: '/solutions/compliance', route: '/solutions/compliance', category: 'compliance' },
+    { name: 'Business Process Automation', href: '/solutions/business-process-automation', route: '/solutions/business-process-automation', category: 'compliance' },
+    { name: 'Compliance Management', href: '/solutions/compliance-management', route: '/solutions/compliance-management', category: 'compliance' },
+    { name: 'Performance Analytics', href: '/solutions/performance-analytics', route: '/solutions/performance-analytics', category: 'compliance' },
+    { name: 'Workflow Optimization', href: '/solutions/workflow-optimization', route: '/solutions/workflow-optimization', category: 'compliance' },
   ],
   'Cybersecurity & Cloud': [
-    { name: 'Cybersecurity Solutions', href: '/solutions/cybersecurity', route: '/solutions/cybersecurity', category: 'cybersecurity' },
+    { name: 'Cybersecurity Solutions', href: '/solutions/cybersecurity-solutions', route: '/solutions/cybersecurity-solutions', category: 'cybersecurity' },
+    { name: 'Cybersecurity & Cloud', href: '/solutions/cybersecurity-cloud', route: '/solutions/cybersecurity-cloud', category: 'cybersecurity' },
     { name: 'Cloud Migration', href: '/solutions/cloud', route: '/solutions/cloud', category: 'cloud' },
     { name: 'Managed Cloud Hosting', href: '/solutions/cloud', route: '/solutions/cloud', category: 'cloud' },
     { name: 'Managed Services', href: '/managed-services', route: '/managed-services', category: 'managed-services' },
@@ -65,8 +51,11 @@ const megaMenuData = {
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const servicesMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Effect to prevent body scrolling when a menu is open
   useEffect(() => {
@@ -75,11 +64,37 @@ export default function Header() {
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function
+    
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isServicesMenuOpen, isMenuOpen]);
+
+  // Close menus when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        servicesMenuRef.current && 
+        !servicesMenuRef.current.contains(event.target as Node) &&
+        !document.getElementById('services-menu-button')?.contains(event.target as Node)
+      ) {
+        setIsServicesMenuOpen(false);
+      }
+      
+      if (
+        mobileMenuRef.current && 
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !document.getElementById('mobile-menu-button')?.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Keyboard navigation support
   useEffect(() => {
@@ -94,19 +109,15 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Handle mega menu item click
-  const handleMenuItemClick = (item: { name: string; href: string; route: string; action?: string; category?: string }) => {
-    setIsServicesMenuOpen(false);
-    setIsMenuOpen(false);
-    
-    if (item.action === 'scroll-services') {
-      navigateToServices(navigate, location, item.category);
-    } else {
-      // Handle both hash and browser router navigation
-      const route = item.route.startsWith('/') ? item.route : `/${item.route}`;
-      navigate(route);
+  // Focus management for mobile menu
+  useEffect(() => {
+    if (isMenuOpen && mobileMenuRef.current) {
+      const focusableElements = mobileMenuRef.current.querySelectorAll('a, button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusableElements.length > 0) {
+        (focusableElements[0] as HTMLElement).focus();
+      }
     }
-  };
+  }, [isMenuOpen]);
 
   // Handle navigation links
   const handleNavigation = (sectionId: string) => {
@@ -121,176 +132,232 @@ export default function Header() {
     }
   };
 
+  // Handle services menu click
+  const handleServicesMenuClick = (category?: string) => {
+    if (location.pathname === '/') {
+      scrollToSection('services');
+    } else {
+      navigate('/#services');
+    }
+    
+    if (category) {
+      setTimeout(() => {
+        console.log(`Navigated to services - ${category} category`);
+      }, 1000);
+    }
+  };
+
+  // Handle mobile menu item click
+  const handleMobileMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header className="bg-[#000000] text-white border-b border-gray-800 sticky top-0 z-50">
-      <div className="container mx-auto px-6 flex justify-between items-center h-20">
-        {/* Left side: Logo + Navigation */}
-        <div className="flex items-center gap-8">
-          <Link to="/" className="flex-shrink-0">
-            <Logo size="sm" variant="light" />
-          </Link>
+    <header id="header" className="sticky top-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="shrink-0">
+            <Link to="/" aria-label="79Ratio Home">
+              <Logo imageClassName="h-8 w-auto" />
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center">
-            <Link 
-              to="/" 
-              className="text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)] flex items-center"
-            >
-              Home
-            </Link>
-            <Link 
-              to="/solutions" 
-              className="text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)] flex items-center"
-            >
-              Solutions
-            </Link>
+          <nav className="hidden lg:flex items-center gap-10">
+            <div className="relative" ref={servicesMenuRef}>
+              <button
+                id="services-menu-button"
+                onClick={() => setIsServicesMenuOpen(!isServicesMenuOpen)}
+                onBlur={(e) => {
+                  // Check if focus moved outside the menu
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    setTimeout(() => setIsServicesMenuOpen(false), 200);
+                  }
+                }}
+                className="flex items-center text-base font-medium text-white hover:text-yellow-400 transition-colors duration-200"
+                aria-haspopup="true"
+                {...(isServicesMenuOpen ? {'aria-expanded': 'true'} : {'aria-expanded': 'false'})}
+              >
+                Solutions
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${isServicesMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Mega Menu */}
+              {isServicesMenuOpen && (
+                <div 
+                  className="absolute left-0 mt-2 w-screen max-w-6xl bg-black border border-gray-800 shadow-2xl rounded-lg overflow-hidden"
+                  onMouseLeave={() => setIsServicesMenuOpen(false)}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+                    {Object.entries(megaMenuData).map(([category, items]) => (
+                      <div key={category}>
+                        <h3 className="text-yellow-400 font-semibold mb-3">{category}</h3>
+                        <ul className="space-y-2">
+                          {items.map((item) => (
+                            <li key={item.name}>
+                              <Link
+                                to={item.route}
+                                className="block py-2 text-gray-300 hover:text-white hover:bg-gray-900 px-3 rounded transition-colors duration-200"
+                                onClick={() => {
+                                  setIsServicesMenuOpen(false);
+                                  setIsMenuOpen(false);
+                                  if (item.category) {
+                                    handleServicesMenuClick(item.category);
+                                  }
+                                }}
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link 
               to="/industries" 
-              className="text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)] flex items-center"
+              className="text-base font-medium text-white hover:text-yellow-400 transition-colors duration-200"
+              onClick={() => setIsMenuOpen(false)}
             >
               Industries
             </Link>
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsServicesMenuOpen(true)}
-              onMouseLeave={() => setIsServicesMenuOpen(false)}
+
+            <a 
+              href="#contact" 
+              onClick={(e) => {
+                e.preventDefault();
+                if (location.pathname === '/') {
+                  scrollToSection('contact');
+                } else {
+                  navigate('/#contact');
+                }
+              }}
+              className="text-base font-medium text-white hover:text-yellow-400 transition-colors duration-200"
+              aria-label="Contact us"
             >
-              <button className="flex items-center gap-[var(--space-8)] text-[length:var(--text-body)] font-medium hover:text-yellow-400 transition-colors duration-300 h-20 px-[var(--space-8)]">
-                <span>What We Do</span>
-                <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isServicesMenuOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {/* Mega Menu Overlay */}
-              {isServicesMenuOpen && (
-                <>
-                  {/* Backdrop */}
-                  <div 
-                    className="fixed inset-0 bg-black/60 z-40"
-                    onClick={() => setIsServicesMenuOpen(false)}
-                  ></div>
-                  
-                  {/* Menu Panel - MODIFIED FOR TOP HALF */}
-                  <div
-                    className={`fixed top-20 left-0 h-[50vh] w-full bg-black shadow-2xl z-50 overflow-y-auto
-                               border-b border-gray-800
-                               transition-transform duration-300 ease-in-out
-                               ${isServicesMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
-                  >
-                    <div className="container mx-auto px-6 h-full flex flex-col pt-4 pb-8">
-                      <div className="flex justify-between items-center flex-shrink-0 mb-6">
-                        <h2 className="text-lg font-bold text-white font-sans">Our Services</h2>
-                        <button 
-                          onClick={() => setIsServicesMenuOpen(false)} 
-                          className="text-gray-400 hover:text-white"
-                        >
-                          <X size={24} />
-                        </button>
-                      </div>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8">
-                        {Object.entries(megaMenuData).map(([title, links]) => (
-                          <div key={title}>
-                            <h3 className="text-yellow-400 font-medium mb-3 text-base font-sans">{title}</h3>
-                            <ul className="space-y-2">
-                              {links.map((link) => (
-                                <li key={link.name}>
-                                  <button 
-                                    onClick={() => handleMenuItemClick(link)}
-                                    className="hover:text-yellow-400 transition-colors duration-200 text-gray-300 text-sm font-sans text-left hover:underline"
-                                  >
-                                    {link.name}
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
+              Contact
+            </a>
           </nav>
-        </div>
 
-        {/* Right Side Actions */}
-        <div className="hidden lg:flex items-center space-x-4">
-          <button 
-            onClick={() => handleNavigation('final-cta')}
-            className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[length:var(--text-body)]"
-          >
-            Schedule a Call
-          </button>
-          <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[length:var(--text-body)]">
-            <Lock className="w-5 h-5 mr-2" />
-            Client Login
-          </a>
-        </div>
+          {/* CTA Button */}
+          <div className="hidden lg:flex items-center">
+            <Link
+              to="/solutions"
+              className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-500 transition-colors duration-200 shadow-lg"
+              aria-label="Get started with 79Ratio"
+            >
+              <Lock className="mr-2 h-4 w-4" />
+              Get Started
+            </Link>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-          </button>
+          {/* Mobile menu button */}
+          <div className="lg:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              {...(isMenuOpen ? {'aria-expanded': 'true'} : {'aria-expanded': 'false'})}
+              aria-label="Toggle navigation menu"
+            >
+              {isMenuOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-gray-900 fixed inset-0 z-50 p-6 overflow-y-auto">
-            <div className="flex justify-between items-center mb-8">
-              <Link to="/">
-                <Logo size="sm" variant="light" />
-              </Link>
-              <button onClick={() => setIsMenuOpen(false)}>
-                <X className="w-8 h-8" />
+        <div 
+          ref={mobileMenuRef}
+          className="lg:hidden bg-black border-t border-gray-800"
+          role="navigation"
+          aria-label="Mobile menu"
+        >
+          <div className="pt-2 pb-3 space-y-1">
+            <div className="px-4 py-2">
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === 'services' ? null : 'services')}
+                className="flex items-center w-full text-left text-base font-medium text-white hover:text-yellow-400 py-2"
+                {...(activeDropdown === 'services' ? {'aria-expanded': 'true'} : {'aria-expanded': 'false'})}
+                aria-controls="mobile-services-menu"
+              >
+                Solutions
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
               </button>
-            </div>
-            <nav className="flex flex-col space-y-4">
-                <Link 
-                  to="/" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors"
+              
+              {activeDropdown === 'services' && (
+                <div 
+                  id="mobile-services-menu"
+                  className="mt-2 pl-4 space-y-2 border-l border-gray-800"
                 >
-                  Home
-                </Link>
-                <Link 
-                  to="/solutions" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors"
-                >
-                  Solutions
-                </Link>
-                <Link 
-                  to="/industries" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-yellow-400 font-bold text-xl hover:text-yellow-300 transition-colors"
-                >
-                  Industries
-                </Link>
-                <h3 className="text-yellow-400 font-bold text-xl pt-4">What We Do</h3>
-                {Object.values(megaMenuData).flat().map(link => (
-                     <button 
-                       key={link.name} 
-                       onClick={() => handleMenuItemClick(link)}
-                       className="text-white hover:text-yellow-400 pl-4 py-2 text-left"
-                     >
-                       {link.name}
-                     </button>
-                ))}
-                <div className="pt-6 flex flex-col space-y-4">
-                    <button 
-                      onClick={() => handleNavigation('final-cta')}
-                      className="flex items-center justify-center bg-yellow-400 text-black font-bold px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors duration-300 text-[length:var(--text-body)]"
-                    >
-                        Schedule a Call
-                    </button>
-                    <a href="https://79ratio.deskdirector.com/auth/v1/email" className="flex items-center justify-center border border-gray-700 text-white font-bold px-6 py-3 rounded-md hover:border-yellow-400 hover:text-yellow-400 transition-colors duration-300 text-[length:var(--text-body)]">
-                        <Lock className="w-5 h-5 mr-2" />
-                        Client Login
-                    </a>
+                  {Object.entries(megaMenuData).flatMap(([category, items]) => 
+                    items.map((item: {name: string; href: string; route: string; category?: string}) => (
+                      <Link
+                        key={item.name}
+                        to={item.route}
+                        className="block py-2 text-gray-300 hover:text-white pl-4"
+                        onClick={() => {
+                          handleMobileMenuItemClick();
+                          if (item.category) {
+                            handleServicesMenuClick(item.category);
+                          }
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    ))
+                  )}
                 </div>
-            </nav>
+              )}
+            </div>
+            
+            <Link
+              to="/industries"
+              className="block px-4 py-2 text-base font-medium text-white hover:text-yellow-400"
+              onClick={handleMobileMenuItemClick}
+            >
+              Industries
+            </Link>
+            
+            <a
+              href="#contact"
+              className="block px-4 py-2 text-base font-medium text-white hover:text-yellow-400"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMobileMenuItemClick();
+                if (location.pathname === '/') {
+                  scrollToSection('contact');
+                } else {
+                  navigate('/#contact');
+                }
+              }}
+            >
+              Contact
+            </a>
+            
+            <div className="px-4 py-4">
+              <Link
+                to="/solutions"
+                className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-500"
+                onClick={handleMobileMenuItemClick}
+                aria-label="Get started with 79Ratio"
+              >
+                <Lock className="mr-2 h-4 w-4" />
+                Get Started
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </header>

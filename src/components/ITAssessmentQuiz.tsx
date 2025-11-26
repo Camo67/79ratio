@@ -139,7 +139,7 @@ export default function ITAssessmentQuiz() {
               What's Your IT Resilience Score?
             </h2>
             
-            <p className="text-[length:var(--text-body-large)] text-gray-400 mb-[var(--space-32)] max-w-2xl mx-auto font-sans">
+            <p className="text-[var(--text-body-large)] text-gray-400 mb-[var(--space-32)] max-w-2xl mx-auto font-sans">
               Answer 5 quick questions to see how your IT stacks up against threats and outages.
             </p>
 
@@ -149,13 +149,13 @@ export default function ITAssessmentQuiz() {
                   <TrendingUp className="w-8 h-8 text-yellow-400" />
                 </div>
                 <div className="text-center">
-                  <div className="text-[length:var(--text-h4)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">
+                  <div className="text-[var(--text-h4)] font-bold text-yellow-400 mb-[var(--space-8)] font-sans">
                     Proactive Protector
                   </div>
-                  <div className="text-[length:var(--text-h2)] font-bold text-white mb-[var(--space-8)] font-sans">
+                  <div className="text-[var(--text-h2)] font-bold text-white mb-[var(--space-8)] font-sans">
                     55 / 100
                   </div>
-                  <p className="text-gray-400 text-[length:var(--text-body)] font-sans">
+                  <p className="text-gray-400 text-[var(--text-body)] font-sans">
                     Sample Score
                   </p>
                 </div>
@@ -200,16 +200,16 @@ export default function ITAssessmentQuiz() {
                 </div>
                 
                 <div className="text-center mb-[var(--space-32)]">
-                  <div className={`text-[length:var(--text-h3)] font-bold ${scoreCategory.color} mb-[var(--space-8)] font-sans`}>
+                  <div className={`text-[var(--text-h3)] font-bold ${scoreCategory.color} mb-[var(--space-8)] font-sans`}>
                     {scoreCategory.level}
                   </div>
-                  <div className="text-[length:var(--text-h1)] font-bold text-white mb-[var(--space-16)] font-sans">
+                  <div className="text-[var(--text-h1)] font-bold text-white mb-[var(--space-16)] font-sans">
                     {totalScore} / 100
                   </div>
                   <Progress value={totalScore} className="w-full mb-[var(--space-24)]" />
                 </div>
 
-                <p className="text-gray-400 text-[length:var(--text-body-large)] mb-[var(--space-32)] font-sans">
+                <p className="text-gray-400 text-[var(--text-body-large)] mb-[var(--space-32)] font-sans">
                   {getScoreMessage(totalScore)}
                 </p>
 
@@ -251,7 +251,7 @@ export default function ITAssessmentQuiz() {
 
           <Card className="bg-black border-gray-800 max-w-3xl mx-auto">
             <CardHeader>
-              <CardTitle className="text-white text-center text-[length:var(--text-h3)] font-sans">
+              <CardTitle className="text-white text-center text-[var(--text-h3)] font-sans">
                 {questions[currentQuestion].question}
               </CardTitle>
             </CardHeader>
@@ -264,7 +264,7 @@ export default function ITAssessmentQuiz() {
                     className="p-[var(--space-24)] h-auto border-gray-700 text-left hover:border-yellow-400/50 hover:bg-yellow-400/10 transition-all duration-200 font-sans"
                     onClick={() => handleAnswer(option.score)}
                   >
-                    <span className="text-white text-[length:var(--text-body)]">
+                    <span className="text-white text-[var(--text-body)]">
                       {option.text}
                     </span>
                   </Button>

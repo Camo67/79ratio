@@ -26,7 +26,7 @@ export default function IndustriesPage() {
         })()}
         <div className="container mx-auto text-center max-w-4xl relative z-10">
           <h1 className="mb-[var(--space-24)] font-sans">Industries We Serve</h1>
-          <p className="text-[length:var(--text-body-large)] text-gray-300 font-sans">
+          <p className="text-[var(--text-body-large)] text-gray-300 font-sans">
             We provide tailored, secure solutions designed specifically for your sector — Law Firms, Healthcare, Nonprofits, and Manufacturing. Our technology is built to meet the unique needs of each industry, ensuring security, compliance, and efficiency.
           </p>
         </div>
