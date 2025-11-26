@@ -68,9 +68,7 @@ export default function NetworkArchitecturePage() {
               At 79Ratio, we help organizations build robust network architectures that reduce latency, improve performance, and enhance security. Whether you're managing a small office network or a complex enterprise infrastructure, our solutions are designed to grow with your needs and keep your operations running smoothly.
             </p>
             <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
-              <ScheduleCallModal isOpen={false} onClose={function (): void {
-                throw new Error('Function not implemented.');
-              } }>
+              <ScheduleCallModal>
                 <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                   Get a Free Consultation
                 </Button>

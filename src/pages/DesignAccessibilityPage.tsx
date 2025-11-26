@@ -135,4 +135,3 @@ const DesignAccessibilityPage = () => {
 
 export default DesignAccessibilityPage;
 
-

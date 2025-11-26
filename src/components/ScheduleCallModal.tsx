@@ -1,20 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Calendar, Clock, Building, Mail, Phone, User, X } from 'lucide-react'
 import { Button } from './ui/button'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Textarea } from './ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 
 interface ScheduleCallModalProps {
-  isOpen: boolean
-  onClose: () => void
+  /** Optional controlled open state */
+  isOpen?: boolean
+  /** Called when the modal has been closed */
+  onClose?: () => void
+  /** Trigger element, e.g. a Button */
+  children?: ReactNode
 }
 
-const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
+const ScheduleCallModal = ({ isOpen, onClose, children }: ScheduleCallModalProps) => {
+  const [internalOpen, setInternalOpen] = useState(false)
+
+  const open = isOpen ?? internalOpen
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (isOpen === undefined) {
+      setInternalOpen(nextOpen)
+    }
+    if (!nextOpen && onClose) {
+      onClose()
+    }
+  }
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -50,7 +66,7 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
     
     // Close modal after success message
     setTimeout(() => {
-      onClose()
+      handleOpenChange(false)
       setIsSubmitted(false)
       setFormData({
         firstName: '',
@@ -70,9 +86,15 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
     }, 3000)
   }
 
-  if (isSubmitted) {
-    return (
-      <Dialog open={isOpen} onOpenChange={onClose}>
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      {children && (
+        <DialogTrigger asChild>
+          {children}
+        </DialogTrigger>
+      )}
+
+      {isSubmitted ? (
         <DialogContent className="bg-black border border-gray-800 max-w-md mx-auto">
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -100,13 +122,8 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
             </p>
           </div>
         </DialogContent>
-      </Dialog>
-    )
-  }
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-black border border-gray-800 max-w-2xl mx-auto max-h-[90vh] overflow-y-auto">
+      ) : (
+        <DialogContent className="bg-black border border-gray-800 max-w-2xl mx-auto max-h-[90vh] overflow-y-auto">
         <DialogHeader className="border-b border-gray-800 pb-6">
           <DialogTitle 
             className="text-white flex items-center gap-3"
@@ -129,7 +146,7 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
           >
             Get personalized IT solutions for your business. Our experts will assess your needs and provide tailored recommendations.
           </p>
-        </DialogHeader>
+          </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6" style={{ padding: 'var(--space-24) 0' }}>
           {/* Personal Information */}
@@ -336,7 +353,7 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
           <div className="flex gap-4 pt-6 border-t border-gray-800">
             <Button
               type="button"
-              onClick={onClose}
+              onClick={() => handleOpenChange(false)}
               className="flex-1 bg-gray-700 text-white hover:bg-gray-600"
               style={{ 
                 padding: 'var(--space-16) var(--space-24)',
@@ -373,6 +390,7 @@ const ScheduleCallModal = ({ isOpen, onClose }: ScheduleCallModalProps) => {
           </div>
         </form>
       </DialogContent>
+      )}
     </Dialog>
   )
 }

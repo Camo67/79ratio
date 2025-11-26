@@ -113,9 +113,7 @@ const UXUIDesignPage = () => {
               We create intuitive, engaging, and effective digital products that solve real user problems and drive business results.
             </p>
             <div className="flex flex-col sm:flex-row gap-[var(--space-16)] justify-center items-center">
-              <ScheduleCallModal isOpen={false} onClose={function (): void {
-                throw new Error('Function not implemented.');
-              } }>
+              <ScheduleCallModal>
                 <Button size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 glow-gold-button font-sans">
                   Get a Design Consultation
                 </Button>
